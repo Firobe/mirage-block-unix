@@ -97,7 +97,7 @@ int blkgetsectorsize(int fd, int *size)
   return ret;
 }
 
-#elif _WIN32
+#else
 
 int blkgetsize(int fd, uint64_t *psize)
 {
@@ -109,8 +109,6 @@ int blkgetsectorsize(int fd, int *size)
   return 512; /* Will never be called because there are no block device files */
 }
 
-#else
-# error "Unable to query block device size: unsupported platform, please report."
 #endif
 
 CAMLprim value stub_blkgetsize(value fd){
